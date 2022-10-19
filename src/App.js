@@ -1,15 +1,11 @@
-import "./App.css";
-import { Container, Row, Col } from "react-bootstrap";
-import { useState } from "react";
-import StepOne from "./Stepper/StepOne";
-import StepTwo from "./Stepper/StepTwo";
-import Confirm from "./Stepper/confirm";
+import React, {useState} from "react";
+import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 
-function App() {
-  //state for steps
-  const [step, setstep] = useState(1);
+import Step1 from "./Stepper/Step1";
+import Step2 from "./Stepper/Step2";
+import Step3 from "./Stepper/Step3";
 
-  //state for form data
+export default function App() {
   const [formData, setFormData] = useState({
     FirstName: "",
     LastName: "",
@@ -19,15 +15,6 @@ function App() {
     phone:""
   })
 
-  // function for going to next step by increasing step state by 1
-  const nextStep = () => {
-    setstep(step + 1);
-  };
-
-  // function for going to previous step by decreasing step state by 1
-  const prevStep = () => {
-    setstep(step - 1);
-  };
 
   // handling form input data by taking onchange value and updating our previous form data state
   const handleInputData = input => e => {
@@ -40,56 +27,14 @@ function App() {
       [input]: value
   }));
   }
-
-
-// javascript switch case to show different form in each step
-  switch (step) {
-    // case 1 to show stepOne form and passing nextStep, prevStep, and handleInputData as handleFormData method as prop and also formData as value to the fprm
-    case 1:
-      return (
-        <div className="App">
-          <Container>
-            <Row>
-              <Col  md={{ span: 6, offset: 3 }} className="custom-margin">
-                <StepOne nextStep={nextStep} handleFormData={handleInputData} values={formData} />
-              </Col>
-            </Row>
-          </Container>
-        </div>
-      );
-    // case 2 to show stepTwo form passing nextStep, prevStep, and handleInputData as handleFormData method as prop and also formData as value to the fprm
-    case 2:
-      return (
-        <div className="App">
-          <Container>
-            <Row>
-              <Col  md={{ span: 6, offset: 3 }} className="custom-margin">
-                <StepTwo nextStep={nextStep} prevStep={prevStep} handleFormData={handleInputData} values={formData} />
-              </Col>
-            </Row>
-          </Container>
-        </div>
-      );
-      // Only formData is passed as prop to show the final value at form submit
-    case 3:
-      return (
-        <div className="App">
-          <Container>
-            <Row>
-              <Col  md={{ span: 6, offset: 3 }} className="custom-margin">
-                <Confirm values={formData}  />
-              </Col>
-            </Row>
-          </Container>
-        </div>
-      );
-    // default case to show nothing
-    default:
-      return (
-        <div className="App">
-        </div>
-      );
-  }
+  return (
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Navigate replace to="/Step1"/> } />
+          <Route  path="/Step1" element={<Step1 handleFormData={handleInputData} values={formData}/>} />
+          <Route  path="/Step2" element={<Step2 handleFormData={handleInputData} values={formData}/>} />
+          <Route  path="/Step3" element={<Step3 handleFormData={handleInputData} values={formData}/>} />
+        </Routes>
+      </BrowserRouter>
+  );
 }
-
-export default App;
