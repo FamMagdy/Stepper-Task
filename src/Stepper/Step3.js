@@ -2,12 +2,13 @@ import React from "react";
 import { Card, Container } from "react-bootstrap";
 import '../App.css'
 const Step3 = ({ values }) => {
-
+const title = 'Step 3'
   const { FirstName, LastName, age, email, phone, gender } = values;
   return (
     <Container>
       <Card style={{ margin: 100, border:'none', textAlign:'justify' }}>
         <Card.Body className="card-style">
+      <h1>{title}</h1>
           <p>
             <strong>First Name :</strong> {FirstName}{" "}
           </p>

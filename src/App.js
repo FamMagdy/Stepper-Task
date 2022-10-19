@@ -30,10 +30,10 @@ export default function App() {
   return (
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navigate replace to="/Step1"/> } />
-          <Route  path="/Step1" element={<Step1 handleFormData={handleInputData} values={formData}/>} />
-          <Route  path="/Step2" element={<Step2 handleFormData={handleInputData} values={formData}/>} />
-          <Route  path="/Step3" element={<Step3 handleFormData={handleInputData} values={formData}/>} />
+          <Route path="/" element={<Navigate replace to="step/1"/> } />
+          <Route  path="step/1" element={<Step1 handleFormData={handleInputData} values={formData}/>} />
+          <Route  path="step/2" element={<Step2 handleFormData={handleInputData} values={formData}/>} />
+          <Route  path="step/3" element={<Step3 handleFormData={handleInputData} values={formData}/>} />
         </Routes>
       </BrowserRouter>
   );

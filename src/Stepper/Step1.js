@@ -22,7 +22,7 @@ const Step1 = ({ handleFormData, values }) => {
       setError(true);
     } else {
       // nextStep();
-      navigate('/Step2')
+      navigate('../step/2')
     }
   };
 

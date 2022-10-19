@@ -29,7 +29,7 @@ const Step2 = ({ nextStep, handleFormData, values }) => {
         if (validator.isEmpty(values.phone)) {
             setError(true);
         } else {
-            navigate('/Step3')
+            navigate('../step/3')
         }
     };
     return (
